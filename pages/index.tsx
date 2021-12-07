@@ -8,18 +8,22 @@ import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import axios from 'axios'
 import { InferGetServerSidePropsType } from 'next'
 import Swiper from '../components/SwiperComponent/Swiper'
+import Section from '../components/common/Section'
+import StreamsSection from '../components/streams/StreamsSection'
 export default function Home({
   data
 }: InferGetServerSidePropsType<typeof getStaticProps>) {
   console.log(data)
   return (
-    <div className=" h-screen py-2  mx-auto">
+    <div className=" py-2  mx-auto">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Swiper posts={data.posts} msg={data.msg} length={data.length} />
+      <Section posts={data.posts} title="اخر الاخبار" />
+      <StreamsSection />
     </div>
   )
 }
