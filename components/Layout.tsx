@@ -1,10 +1,20 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Head from 'next/head'
 const Layout: React.FC = ({ children }) => {
   return (
-    <div className="bg-[#040203] text-gray-200">
-      <div className="max-w-7xl mx-auto min-h-screen">
+    <div className="bg-[#040203] text-gray-200 font-mkzy">
+      <Head>
+        <title>Create Next App</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <div className="min-h-screen">
         <Navbar />
         {children}
       </div>

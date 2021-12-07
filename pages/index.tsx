@@ -7,31 +7,19 @@ import Button from '@material-tailwind/react/Button'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import axios from 'axios'
 import { InferGetServerSidePropsType } from 'next'
+import Swiper from '../components/SwiperComponent/Swiper'
 export default function Home({
   data
 }: InferGetServerSidePropsType<typeof getStaticProps>) {
   console.log(data)
   return (
-    <div className=" h-screen py-2 max-w-3xl mx-auto">
+    <div className=" h-screen py-2  mx-auto">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Hello</h1>
-      <Button
-        active="red"
-        className="bg-red-500  hover:bg-green-500 focus:!bg-black"
-        ripple="light"
-      >
-        E-MENA
-      </Button>
-      <div className=" px-4 border-4">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae,
-        explicabo tenetur, totam tempore dolorum dignissimos pariatur ducimus
-        voluptatibus repellat perspiciatis labore saepe ab similique quod
-        dolores eveniet distinctio ex itaque!
-      </div>
+      <Swiper posts={data.posts} msg={data.msg} length={data.length} />
     </div>
   )
 }
