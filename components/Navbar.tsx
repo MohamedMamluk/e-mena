@@ -8,7 +8,7 @@ const Navbar = () => {
   const router = useRouter()
   console.log(router.query)
   return (
-    <header className="max-w-[1400px] mx-auto text-3xl">
+    <header className="max-w-[1400px] mx-auto text-xl font-poppins select-none">
       <div className="flex justify-between items-center w-full py-4 px-2">
         <div
           id="image__container"

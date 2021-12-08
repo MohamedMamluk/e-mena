@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className=" bg-[#171717] pt-10 text-center px-5">
       <div
         id="main__footer"
-        className="flex flex-col items-center md:flex-row md:justify-between"
+        className="flex flex-col items-center md:flex-row md:justify-evenly"
       >
         <div className="max-w-xs md:!w-1/3 flex-shrink-2">
           <img src="/E-Mena.png" alt="E-Mena logo" className="w-full" />
@@ -16,7 +16,7 @@ const Footer = () => {
         >
           <section>
             <h2 className="text-lg font-bold">صفحات الموقع</h2>
-            <ul className="text-sm text-gray-400 ">
+            <ul className="text-sm text-gray-400 font-poppins">
               <li className="hover:text-gray-200">Home</li>
               <li className="hover:text-gray-200">League of Legends</li>
               <li className="hover:text-gray-200">Valorant</li>
@@ -25,7 +25,7 @@ const Footer = () => {
           </section>
           <section>
             <h2 className="text-lg font-bold">الالعاب</h2>
-            <ul className="text-sm text-gray-400 ">
+            <ul className="text-sm text-gray-400 font-poppins">
               <li className="hover:text-gray-200">League of Legends</li>
               <li className="hover:text-gray-200">Valorant</li>
               <li className="hover:text-gray-200">PUBG</li>

@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mkzy: ['Markazi Text', ...defaultTheme.fontFamily.sans]
+        mkzy: ['Markazi Text', ...defaultTheme.fontFamily.sans],
+        poppins: ['Poppins', ...defaultTheme.fontFamily.sans]
       }
     }
   },
