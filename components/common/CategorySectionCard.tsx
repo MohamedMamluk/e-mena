@@ -44,7 +44,7 @@ const CategorySectionCard: React.FC<CardProps> = ({ post }) => {
         </div>
         <div className="h-1/3 w-full flex flex-col items-center    md:!justify-start md:!flex-row">
           <Link href={`/post/${post._id}`}>
-            <a className="bg-red-500 text-center px-8 py-3 text-xl rounded-lg">
+            <a className="bg-red-500 text-center px-8 py-2 text-xl rounded-lg">
               اقرأ اكثر
             </a>
           </Link>
