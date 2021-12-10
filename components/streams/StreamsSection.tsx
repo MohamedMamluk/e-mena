@@ -12,7 +12,6 @@ interface Stream {
 }
 const StreamsSection = () => {
   const [streams, setStreams] = React.useState<Stream[]>([])
-  console.log(streams)
   const [fetched, setFetched] = React.useState(false)
   const getStreams = async () => {
     const res = await axios.get(

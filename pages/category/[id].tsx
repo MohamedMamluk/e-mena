@@ -9,7 +9,6 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import CategorySectionCard from '../../components/common/CategorySectionCard'
 
 const category = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(data)
   const router = useRouter()
 
   return (

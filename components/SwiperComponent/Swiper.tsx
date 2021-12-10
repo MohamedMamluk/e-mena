@@ -5,12 +5,13 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper'
-
+import Link from 'next/link'
 // install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination])
 
 import { GetPosts } from '../../types'
 const SwiperContainer: React.FC<GetPosts> = ({ posts }) => {
+  const postsSwiper = posts.slice(0, 3)
   return (
     <section id="swiper" className=" h-[50vh] md:h-[80vh]">
       <Swiper
@@ -24,9 +25,9 @@ const SwiperContainer: React.FC<GetPosts> = ({ posts }) => {
           clickable: true
         }}
       >
-        {posts.map((post, index) => (
+        {postsSwiper.map((post, index) => (
           <SwiperSlide key={index}>
-            <div className="  bg-gray-900 opacity-60 absolute inset-0">
+            <div className="  bg-gray-900 opacity-60 absolute inset-0 select-none">
               <img
                 src={post.image}
                 alt=""
@@ -44,9 +45,12 @@ const SwiperContainer: React.FC<GetPosts> = ({ posts }) => {
               <h1 style={{ direction: 'rtl' }} className="text-3xl font-mkzy">
                 {post.title}
               </h1>
-              <button className="bg-red-500 font-mkzy text-white px-6 py-2 rounded-lg text-xl">
-                اقرأ اكثر
-              </button>
+
+              <Link href={`/post/${post._id}`}>
+                <a className="bg-red-500 font-mkzy text-white px-6 py-2 rounded-lg text-xl">
+                  اقرأ اكثر
+                </a>
+              </Link>
             </div>
           </SwiperSlide>
         ))}

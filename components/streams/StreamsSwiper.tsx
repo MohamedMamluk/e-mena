@@ -18,9 +18,6 @@ interface Stream {
   }[]
 }
 const StreamSwiper: React.FC<Stream> = ({ streams }) => {
-  React.useEffect(() => {
-    console.log(window.innerWidth)
-  }, [])
   return (
     <section id="swiper" className=" h-96">
       <Swiper

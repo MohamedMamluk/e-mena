@@ -1,5 +1,6 @@
 import React from 'react'
 import { Post } from '../../types'
+import Link from 'next/link'
 interface CardProps {
   post: Post
 }
@@ -42,9 +43,11 @@ const CategorySectionCard: React.FC<CardProps> = ({ post }) => {
           </h4>
         </div>
         <div className="h-1/3 w-full flex flex-col items-center    md:!justify-start md:!flex-row">
-          <button className="bg-red-500 text-center px-8 py-3 text-xl rounded-lg">
-            اقرأ اكثر
-          </button>
+          <Link href={`/post/${post._id}`}>
+            <a className="bg-red-500 text-center px-8 py-3 text-xl rounded-lg">
+              اقرأ اكثر
+            </a>
+          </Link>
         </div>
       </div>
     </div>
