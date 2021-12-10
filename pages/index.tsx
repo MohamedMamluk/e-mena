@@ -2,8 +2,6 @@ import Head from 'next/head'
 import '../axios'
 import { GetPosts } from '../types'
 import React from 'react'
-import Icon from '@material-tailwind/react/Icon'
-import Button from '@material-tailwind/react/Button'
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 import axios from 'axios'
 import { InferGetServerSidePropsType } from 'next'
@@ -13,7 +11,6 @@ import StreamsSection from '../components/streams/StreamsSection'
 export default function Home({
   data
 }: InferGetServerSidePropsType<typeof getStaticProps>) {
-  console.log(data)
   return (
     <div className=" py-2  mx-auto">
       <Head>
@@ -22,7 +19,7 @@ export default function Home({
       </Head>
 
       <Swiper posts={data.posts} msg={data.msg} length={data.length} />
-      <Section posts={data.posts} title="اخر الاخبار" />
+      <Section posts={data.posts.slice(0, 4)} title="اخر الاخبار" />
       <StreamsSection />
     </div>
   )
