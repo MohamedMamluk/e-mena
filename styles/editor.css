@@ -1,0 +1,19 @@
+.rdw-image-imagewrapper {
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 700px !important;
+  /* width: 100% !important; */
+  max-height: auto !important;
+}
+.rdw-image-imagewrapper img {
+  object-fit: cover !important;
+  object-position: top;
+  width: 100%;
+  height: 100%;
+}
+#rdw-wrapper-4201 {
+  width: 100%;
+}
+.rdw-editor-wrapper {
+  width: 100%;
+}

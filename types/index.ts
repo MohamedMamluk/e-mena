@@ -17,6 +17,13 @@ export interface Post {
   createdAt: string
   writer: string
 }
+export interface PostWriting {
+  image: string
+  title: string
+  subTitle: string
+  category: string
+  content: string
+}
 export interface Writer {
   name: string
   image: string
