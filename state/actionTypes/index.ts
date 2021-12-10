@@ -1,4 +1,4 @@
 export enum ActionTypes {
-  LOGIN_USER = 'LOGIN_USER',
-  LOGOUT_USER = 'LOGOUT_USER'
+  HOLD_POST = 'HOLD_POST',
+  CLEAR_POST = 'CLEAR_POST'
 }
