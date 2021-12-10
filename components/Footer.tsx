@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Link from 'next/link'
 const Footer = () => {
   return (
     <footer className=" bg-[#171717] pt-10 text-center px-5">
@@ -17,18 +17,51 @@ const Footer = () => {
           <section>
             <h2 className="text-lg font-bold">صفحات الموقع</h2>
             <ul className="text-sm text-gray-400 font-poppins">
-              <li className="hover:text-gray-200">Home</li>
-              <li className="hover:text-gray-200">League of Legends</li>
-              <li className="hover:text-gray-200">Valorant</li>
-              <li className="hover:text-gray-200">PUBG</li>
+              <li className="hover:text-gray-200">
+                <Link href="/" passHref>
+                  <a className="relative flex items-center justify-center">
+                    <h2 className="z-30"> Home</h2>
+                  </a>
+                </Link>
+              </li>
+              <li className="hover:text-gray-200">
+                <Link href="/category/league" passHref>
+                  <a className="relative">League of Legends</a>
+                </Link>
+              </li>
+              <li className="hover:text-gray-200">
+                <Link href="/category/valorant" passHref>
+                  <a className="relative">Valorant</a>
+                </Link>
+              </li>
+              <li className="hover:text-gray-200">
+                <Link href="/category/PUBG" passHref>
+                  <a className="relative">PUBG</a>
+                </Link>
+              </li>
             </ul>
           </section>
           <section>
             <h2 className="text-lg font-bold">الالعاب</h2>
             <ul className="text-sm text-gray-400 font-poppins">
-              <li className="hover:text-gray-200">League of Legends</li>
-              <li className="hover:text-gray-200">Valorant</li>
-              <li className="hover:text-gray-200">PUBG</li>
+              <li className="hover:text-gray-200">
+                <a href="https://leagueoflegends.com/" target="_blank">
+                  League of Legends{' '}
+                </a>
+              </li>
+              <li className="hover:text-gray-200">
+                <a href="https://playvalorant.com/" target="_blank">
+                  Valorant
+                </a>
+              </li>
+              <li className="hover:text-gray-200">
+                <a
+                  href="https://emea.battlegrounds.pubg.com/en/"
+                  target="_blank"
+                >
+                  PUBG
+                </a>
+              </li>
             </ul>
           </section>
           <section>
