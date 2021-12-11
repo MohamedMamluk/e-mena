@@ -86,7 +86,7 @@ const post = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           <img
             src={post.image}
             alt="Article Image"
-            className="w-full h-full object-cover "
+            className="w-full h-full object-cover object-top"
           />
         </div>
         <div className="flex justify-between w-full mt-2">
