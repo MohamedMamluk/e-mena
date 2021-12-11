@@ -41,3 +41,10 @@ export interface GetPost {
 export interface Id extends ParsedUrlQuery {
   id: string
 }
+export interface PostWriting {
+  image: string
+  title: string
+  subTitle: string
+  category: string
+  content: string
+}

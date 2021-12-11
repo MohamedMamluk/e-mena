@@ -30,7 +30,7 @@ const SwiperContainer: React.FC<GetPosts> = ({ posts }) => {
             <div className="  bg-gray-900 opacity-60 absolute inset-0 select-none">
               <img
                 src={post.image}
-                alt=""
+                alt="Article image"
                 className="w-full object-cover h-full"
               />
             </div>

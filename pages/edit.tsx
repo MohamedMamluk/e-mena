@@ -2,25 +2,24 @@ import React from 'react'
 import SectionHeader from '../components/common/SectionHeader'
 import InputContainer from '../components/common/InputContainer'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { actionCreators, State } from '../state'
 import dynamic from 'next/dynamic'
 import { EditorProps } from 'react-draft-wysiwyg'
 import Link from 'next/link'
 import { EditorState } from 'draft-js'
-import { convertToRaw } from 'draft-js'
+import { convertToRaw, convertFromRaw } from 'draft-js'
+import { validatePost } from '../utils'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import { bindActionCreators } from 'redux'
-import { actionCreators } from '../state'
 import { PostWriting } from '../types'
-import { validatePost } from '../utils'
 const Editor = dynamic<EditorProps>(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
   { ssr: false }
 )
 const write = () => {
-  const [editorState, setEditorState] = React.useState(
-    EditorState.createEmpty()
-  )
+  const post = useSelector((state: State) => state.post)
 
   const [data, setData] = React.useState<HTMLInputElement['files']>()
   const [loaded, setLoaded] = React.useState(false)
@@ -28,19 +27,18 @@ const write = () => {
   const [progress, setProgress] = React.useState(false)
   const [token, setToken] = React.useState('')
   const [authorized, setAuthorized] = React.useState(false)
-  const [valid, setValid] = React.useState(false)
   React.useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
     if (user) {
       if (user.user.role === 'admin' || user.user.role === 'writer')
         setAuthorized(true)
     }
-
     if (user) {
       const userToken = user.token
       setToken(userToken)
     }
   }, [])
+  const [preview, setPreview] = React.useState(EditorState.createEmpty())
 
   const [postData, setPostData] = React.useState<PostWriting>({
     image: '',
@@ -49,6 +47,21 @@ const write = () => {
     category: '',
     content: ''
   })
+  React.useEffect(() => {
+    setPostData(post)
+    if (post.image) {
+      setLoaded(true)
+      setProgress(false)
+      setUploaded(true)
+    }
+    if (post.content.length === 0) return
+
+    const postContent = convertFromRaw(JSON.parse(post.content))
+    const userToken = JSON.parse(localStorage.getItem('user')).token
+    setToken(userToken)
+    setPreview(EditorState.createWithContent(postContent))
+  }, [])
+  const [valid, setValid] = React.useState(false)
 
   //form functions
   const handleSubmit = async (e) => {
@@ -78,14 +91,14 @@ const write = () => {
     }
   }
   const onEditorStateChange = (editorState) => {
-    setEditorState(editorState)
+    setPreview(editorState)
 
     let state = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
     setPostData({ ...postData, content: state })
   }
   const dispatch = useDispatch()
   const { holdPost } = bindActionCreators(actionCreators, dispatch)
-  if (!authorized)
+  if (!authorized || post.content.length === 0)
     return (
       <h1 className="text-3xl text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
         <span className="text-red-700 text-5xl">،عفوا</span> انت غير مسموح لك
@@ -141,6 +154,17 @@ const write = () => {
         <h1 className={`hidden ${progress && '!block'}`}>جارى الرفع</h1>
 
         <h1 className={`hidden ${uploaded && '!block'}`}> تم الرفع</h1>
+        <button
+          className="bg-red-500 text-gray-100 px-7 whitespace-nowrap py-1  text-xl rounded-lg"
+          onClick={() => {
+            setLoaded(false)
+            setProgress(false)
+            setUploaded(false)
+            setPostData({ ...postData, image: '' })
+          }}
+        >
+          أرغب برفع صورة اخرى
+        </button>
       </InputContainer>
       <InputContainer label="عنوان الخبر:" classes="flex items-center gap-4">
         <input
@@ -177,6 +201,7 @@ const write = () => {
             onChange={(e) =>
               setPostData({ ...postData, category: e.target.value })
             }
+            checked={postData.category === 'league' ? true : false}
           />
         </div>
         <div className="flex flex-row items-center gap-1 text-base font-poppins">
@@ -189,6 +214,7 @@ const write = () => {
             onChange={(e) =>
               setPostData({ ...postData, category: e.target.value })
             }
+            checked={postData.category === 'valorant' ? true : false}
           />
         </div>
         <div className="flex flex-row items-center gap-1 text-base font-poppins">
@@ -201,6 +227,7 @@ const write = () => {
             onChange={(e) =>
               setPostData({ ...postData, category: e.target.value })
             }
+            checked={postData.category === 'PUBG' ? true : false}
           />
         </div>
       </InputContainer>
@@ -209,7 +236,7 @@ const write = () => {
         classes="flex flex-col  mx-auto items-center gap-4"
       ></InputContainer>{' '}
       <Editor
-        editorState={editorState}
+        editorState={preview}
         toolbarClassName="text-black"
         editorClassName="bg-white text-black p-10 font-mkzy"
         wrapperStyle={{ maxWidth: '100%' }}

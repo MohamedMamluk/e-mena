@@ -16,7 +16,7 @@ const postReducer = (state: PostWriting = initialstate, action: PostAction) => {
       return state
     case ActionTypes.CLEAR_POST:
       state = { category: '', content: '', image: '', subTitle: '', title: '' }
-      break
+      return state
 
     default:
       return state
